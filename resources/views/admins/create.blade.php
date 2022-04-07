@@ -21,7 +21,7 @@
         <input name="email">
         <br>
         <label>Status: </label>
-        <input name="stasus">
+        <input name="status">
         <br>
         <button type="submit">Save</button>
         <button type="reset">Reset</button>

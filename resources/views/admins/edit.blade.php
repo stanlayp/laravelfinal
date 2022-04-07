@@ -22,13 +22,8 @@
         <input name="email" value="{{ $admins->email }}">
         <br>
         <label>Status: </label>
-        <input name="stasus" value="{{ $admins->status }}">
+        <input name="status" value="{{ $admins->status }}">
         <br>
-        <!-- <label>Title:</label>
-        <input name="title" value="{{ $news->title }}"><br>
-        <label>Content:</label>
-        <textarea rows="4" name="content">{{ $news->content }}</textarea><br> -->
-
         <button type="submit">Save</button>
         <button type="reset">Reset</button>
     </form>
