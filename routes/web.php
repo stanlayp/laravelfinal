@@ -17,3 +17,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::resource('/admin', 'AdminController');
+
+Route::resource('/asrama', 'AsramaController');
+
+Route::resource('/kamar', 'KamarController');
+
+Route::resource('/mahasiswa', 'MahasiswaController');
+
+Route::resource('/absensi', 'AbsensiController');
+
+
+
+
