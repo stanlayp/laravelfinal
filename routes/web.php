@@ -19,14 +19,21 @@ Route::get('/', function () {
 
 Route::resource('/admin', 'AdminController');
 
-Route::resource('/asrama', 'AsramaController');
+Route::resource('/asrama', 'AsramaController')->middleware('auth');
 
-Route::resource('/kamar', 'KamarController');
+Route::resource('/kamar', 'KamarController')->middleware('auth');
 
-Route::resource('/mahasiswa', 'MahasiswaController');
+Route::resource('/mahasiswa', 'MahasiswaController')->middleware('auth');
 
-Route::resource('/absensi', 'AbsensiController');
+Route::resource('/absensi', 'AbsensiController')->middleware('auth');
+
+Auth::routes();
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
 
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
