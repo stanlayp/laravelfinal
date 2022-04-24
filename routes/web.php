@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 Route::resource('/user', 'UserController')->middleware('auth');
 
-Route::resource('/asrama', 'AsramaController')->middleware('auth');
+Route::resource('/asrama', 'AsramaController')->middleware('admin');
 
 Route::resource('/kamar', 'KamarController')->middleware('auth');
 

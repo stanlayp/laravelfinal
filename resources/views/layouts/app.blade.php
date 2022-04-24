@@ -45,7 +45,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('absensi.index') }}">{{ __('Absensi') }}</a>
                             </li>
-
+                            @can('admin')
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('asrama.index') }}">{{ __('Asrama') }}</a>
                             </li>
@@ -61,6 +61,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('user.index') }}">{{ __('User') }}</a>
                             </li>
+                            @endcan
                         </ul>
                         
                         <!-- Right Side Of Navbar -->
