@@ -1,4 +1,10 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css">
 @extends('layouts.app')
+
 
 @section('content')
     <div class="container">
@@ -25,7 +31,7 @@
 
                     <div class="form-group mb-3">
                         <label>Asrama</label>
-                        <select class="form-control" name="asrama_id">
+                        <select class="form-control chosen" name="asrama_id">
                             <option value="">Pilih Asrama</option>
                             @foreach($asrama as $asr)
                                 <option value="{{ $asr->id }}">
@@ -37,7 +43,7 @@
 
                     <div class="form-group mb-3">
                         <label>No Kamar</label>
-                        <select class="form-control" name="kamar_id">
+                        <select class="form-control chosen" name="kamar_id">
                             <option value="">Pilih No Kamar</option>
                             @foreach($kamar as $kmr)
                                 <option value="{{ $kmr->id }}">
@@ -49,7 +55,7 @@
 
                     <div class="form-group mb-3">
                         <label>Nama Mahasiswa</label>
-                        <select class="form-control" name="mahasiswa_id">
+                        <select class="form-control chosen" name="mahasiswa_id">
                             <option value="">Pilih nama mahasiswa</option>
                             @foreach($mahasiswa as $mhs)
                                 <option value="{{ $mhs->id }}">
@@ -58,6 +64,11 @@
                             @endforeach
                         </select>
                     </div>
+
+                    <script type="text/javascript">
+                        $(".chosen").chosen();
+
+                    </script>
 
                     <div class="form-group mb-3">
                         <label>Kehadiran</label>
