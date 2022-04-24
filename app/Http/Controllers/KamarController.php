@@ -36,11 +36,16 @@ class KamarController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'lantai'=>'required',
+            'nokmr'=>'required',
+            'jmlhpng'=>'required'
+        ]);
+
         $kamar = Kamar::create([
-            'id_asrama' => $request->input('id_asrama'),
             'lantai' => $request->input('lantai'),
-            'no_kamar' => $request->input('no_kamar'),
-            'jmlh_penghuni' => $request->input('jmlh_penghuni')
+            'nokmr' => $request->input('nokmr'),
+            'jmlhpng' => $request->input('jmlhpng')
             ]);
 
             return redirect('/kamar')->with('success','Kamar telah disimpan!');
@@ -78,11 +83,16 @@ class KamarController extends Controller
      */
     public function update(Request $request, Kamar $kamar)
     {
+        $request->validate([
+            'lantai'=>'required',
+            'nokmr'=>'required',
+            'jmlhpng'=>'required'
+        ]);
+        
         $kamar = Kamar::whereId($kamar->id)->update([
-            'id_asrama' => $request->input('id_asrama'),
             'lantai' => $request->input('lantai'),
-            'no_kamar' => $request->input('no_kamar'),
-            'jmlh_penghuni' => $request->input('jmlh_penghuni')
+            'nokmr' => $request->input('nokmr'),
+            'jmlhpng' => $request->input('jmlhpng')
             ]);
 
             return redirect('/kamar')->with('success','Kamar telah diubah!');

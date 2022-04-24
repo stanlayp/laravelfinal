@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/admin', 'AdminController');
+Route::resource('/user', 'UserController')->middleware('auth');
 
 Route::resource('/asrama', 'AsramaController')->middleware('auth');
 
@@ -28,12 +28,11 @@ Route::resource('/mahasiswa', 'MahasiswaController')->middleware('auth');
 Route::resource('/absensi', 'AbsensiController')->middleware('auth');
 
 Auth::routes();
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-
-
-
-
-Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+
+
+
+

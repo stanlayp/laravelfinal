@@ -36,14 +36,21 @@ class MahasiswaController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'nim'=>'required',
+            'namadpn'=>'required',
+            'namablkng'=>'required',
+            'nohp'=>'required',
+            'jurusan'=>'required'
+        ]);
+        
         $mahasiswa = Mahasiswa::create([
             'nim' => $request->input('nim'),
-            'id_kamar' => $request->input('id_kamar'),
-            'nama_depan' => $request->input('nama_depan'),
-            'nama_belakang' => $request->input('nama_belakang'),
-            'no_hp' => $request->input('no_hp'),
+            'namadpn' => $request->input('namadpn'),
+            'namablkng' => $request->input('namablkng'),
+            'nohp' => $request->input('nohp'),
             'jurusan' => $request->input('jurusan')
-            ]);
+        ]);
 
             return redirect('/mahasiswa')->with('success','Mahasiswa telah disimpan!');
     }
@@ -79,12 +86,19 @@ class MahasiswaController extends Controller
      */
     public function update(Request $request, Mahasiswa $mahasiswa)
     {
+        $request->validate([
+            'nim'=>'required',
+            'namadpn'=>'required',
+            'namablkng'=>'required',
+            'nohp'=>'required',
+            'jurusan'=>'required'
+        ]);
+
         $mahasiswa = Mahasiswa::whereId($mahasiswa->id)->update([
             'nim' => $request->input('nim'),
-            'id_kamar' => $request->input('id_kamar'),
-            'nama_depan' => $request->input('nama_depan'),
-            'nama_belakang' => $request->input('nama_belakang'),
-            'no_hp' => $request->input('no_hp'),
+            'namadpn' => $request->input('namadpn'),
+            'namablkng' => $request->input('namablkng'),
+            'nohp' => $request->input('nohp'),
             'jurusan' => $request->input('jurusan')
             ]);
 

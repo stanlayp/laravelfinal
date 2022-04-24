@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Asrama;
 use App\Models\Absensi;
+use App\Models\Kamar;
+use App\Models\Mahasiswa;
+
 use Illuminate\Http\Request;
 
 class AbsensiController extends Controller
@@ -25,7 +29,11 @@ class AbsensiController extends Controller
      */
     public function create()
     {
-        return view('absensi.create');
+        $asrama = Asrama::get();
+        $kamar = Kamar::get();
+        $mahasiswa = Mahasiswa::get();
+
+        return view('absensi.create', compact('asrama', 'kamar', 'mahasiswa'));
     }
 
     /**
@@ -36,11 +44,21 @@ class AbsensiController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'tanggal'=>'required',
+            'asrama_id'=>'required',
+            'kamar_id' => 'required',
+            'mahasiswa_id' => 'required',
+            'kehadiran'=>'required'
+        ]);
+
         $absensi = Absensi::create([
-            'nim' => $request->input('nim'),
             'tanggal' => $request->input('tanggal'),
+            'asrama_id' => $request->input('asrama_id'),
+            'kamar_id' => $request->input('kamar_id'),
+            'mahasiswa_id' => $request->input('mahasiswa_id'),
             'kehadiran' => $request->input('kehadiran')
-            ]);
+        ]);
 
             return redirect('/absensi')->with('success','Absensi telah disimpan!');
     }
@@ -64,7 +82,11 @@ class AbsensiController extends Controller
      */
     public function edit(Absensi $absensi)
     {
-        return view('absensi.edit', compact('absensi'));
+        $asrama = Asrama::get();
+        $kamar = Kamar::get();
+        $mahasiswa = Mahasiswa::get();
+
+        return view('absensi.edit', compact('absensi', 'asrama', 'kamar', 'mahasiswa'));
     }
 
     /**
@@ -76,11 +98,21 @@ class AbsensiController extends Controller
      */
     public function update(Request $request, Absensi $absensi)
     {
+        $request->validate([
+            'tanggal'=>'required',
+            'asrama_id'=>'required',
+            'kamar_id' => 'required',
+            'mahasiswa_id' => 'required',
+            'kehadiran'=>'required'
+        ]);
+        
         $absensi = Absensi::whereId($absensi->id)->update([
-            'nim' => $request->input('nim'),
             'tanggal' => $request->input('tanggal'),
+            'asrama_id' => $request->input('asrama_id'),
+            'kamar_id' => $request->input('kamar_id'),
+            'mahasiswa_id' => $request->input('mahasiswa_id'),
             'kehadiran' => $request->input('kehadiran')
-            ]);
+        ]);
 
             return redirect('/absensi')->with('success','Absensi telah diubah!');
     }

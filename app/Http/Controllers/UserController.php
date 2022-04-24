@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Asrama;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class AsramaController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class AsramaController extends Controller
      */
     public function index()
     {
-        $asrama = Asrama::latest()->get();
-        return view('asrama.index', compact('asrama'));
+        $user = User::latest()->get();
+        return view('user.index', compact('user'));
     }
 
     /**
@@ -25,7 +25,7 @@ class AsramaController extends Controller
      */
     public function create()
     {
-        return view('asrama.create');
+        return view('user.create');
     }
 
     /**
@@ -37,17 +37,18 @@ class AsramaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama'=>'required',
-            'jenis'=>'required',
+            'name'=>'required',
+            'email'=>'required',
+            'password'=>'required'
+        ]);
+        
+        $user = User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => $request->input('password')
         ]);
 
-        $asrama = Asrama::create([
-            'nama' => $request->input('nama'),
-            'jenis' => $request->input('jenis')
-            ]);
-
-            return redirect('/asrama')->with('success','Asrama Berhasil disimpan!');
-            
+            return redirect('/user')->with('success','Data user telah disimpan!');
     }
 
     /**
@@ -56,7 +57,7 @@ class AsramaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Asrama $asrama)
+    public function show($id)
     {
         //
     }
@@ -67,9 +68,9 @@ class AsramaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Asrama $asrama)
+    public function edit(User $user)
     {
-        return view('asrama.edit', compact('asrama'));
+        return view('user.edit', compact('user'));
     }
 
     /**
@@ -79,19 +80,21 @@ class AsramaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Asrama $asrama)
+    public function update(Request $request,User $user)
     {
         $request->validate([
-            'nama'=>'required',
-            'jenis'=>'required',
+            'name'=>'required',
+            'email'=>'required',
+            'password'=>'required'
         ]);
         
-        $asrama = Asrama::whereId($asrama->id)->update([
-            'nama' => $request->input('nama'),
-            'jenis' => $request->input('jenis')
-            ]);
+        $user = User::whereId($user->id)->update([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => $request->input('password')
+        ]);
 
-            return redirect('/asrama')->with('success','Asrama telah diubah!');
+            return redirect('/user')->with('success','Data user telah diubah!');
     }
 
     /**
@@ -100,11 +103,11 @@ class AsramaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Asrama $asrama)
+    public function destroy(User $user)
     {
-        $asrama = Asrama::find($asrama->id);
-        $asrama->delete();
+        $user = User::find($user->id);
+        $user->delete();
 
-        return redirect('/asrama')->with('success','Asrama telah dihapus!');
+        return redirect('/user')->with('success','User telah dihapus!');
     }
 }
