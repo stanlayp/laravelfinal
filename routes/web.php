@@ -17,15 +17,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/user', 'UserController')->middleware('auth');
+Route::resource('/user', 'UserController')->middleware('admin');
 
 Route::resource('/asrama', 'AsramaController')->middleware('admin');
 
-Route::resource('/kamar', 'KamarController')->middleware('auth');
+Route::resource('/kamar', 'KamarController')->middleware('admin');
 
-Route::resource('/mahasiswa', 'MahasiswaController')->middleware('auth');
+Route::resource('/mahasiswa', 'MahasiswaController')->middleware('admin');
 
-Route::resource('/absensi', 'AbsensiController')->middleware('auth');
+Route::resource('/absensi', 'AbsensiController')->middleware('admin');
 
 Auth::routes();
 
